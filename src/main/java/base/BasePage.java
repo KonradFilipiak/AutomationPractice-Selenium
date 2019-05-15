@@ -7,14 +7,16 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementDecorator;
 import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory;
+import sections.HeaderSection;
 import utilities.PropertiesLoader;
 
 public abstract class BasePage extends LoadableComponent<BasePage> {
     protected static final Logger log = LogManager.getLogger(Logger.class.getName());
-    private static String baseUrl;
-    protected String relativeUrl;
     protected PropertiesLoader propertiesLoader;
     protected WebDriver driver;
+
+    private static String baseUrl;
+    protected String relativeUrl;
 
     public BasePage(WebDriver driver, String relativeUrl) {
         propertiesLoader = new PropertiesLoader();
@@ -30,6 +32,8 @@ public abstract class BasePage extends LoadableComponent<BasePage> {
     public BasePage(WebDriver driver) {
         this(driver, "");
     }
+
+    public abstract boolean isInitialized();
 
     @Override
     public BasePage get() {

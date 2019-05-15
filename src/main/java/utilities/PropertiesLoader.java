@@ -52,9 +52,17 @@ public class PropertiesLoader {
     public String getBaseUrl() {
         return properties.getProperty("BASE_URL");
     }
-    
+
     public String getBrowserType() {
         return properties.getProperty("BROWSER");
+    }
+
+    public String getUserEmail() {
+        return properties.getProperty("USER_EMAIL");
+    }
+
+    public String getUserPassword() {
+        return properties.getProperty("USER_PASSWORD");
     }
 
     public int getImplicitWait() {
