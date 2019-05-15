@@ -36,6 +36,11 @@ public class SignInPage extends BasePage {
         Assert.assertEquals(getUrl(), driver.getCurrentUrl());
     }
 
+    @Override
+    public boolean isInitialized() {
+        return signInButton.exists();
+    }
+
     public void logIn(String email, String password) {
         provideSignInEmail(email);
         providePassword(password);
@@ -54,7 +59,7 @@ public class SignInPage extends BasePage {
         signInButton.click();
     }
 
-    public boolean isLoginErrorMessageVisible() {
-        return loginErrorMessage.exists();
+    public String getLoginErrorMessage() {
+        return loginErrorMessage.getText();
     }
 }

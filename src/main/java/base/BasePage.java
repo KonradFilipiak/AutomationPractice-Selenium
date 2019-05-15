@@ -18,8 +18,6 @@ public abstract class BasePage extends LoadableComponent<BasePage> {
     private static String baseUrl;
     protected String relativeUrl;
 
-    private static HeaderSection headerSection;
-
     public BasePage(WebDriver driver, String relativeUrl) {
         propertiesLoader = new PropertiesLoader();
         baseUrl = propertiesLoader.getBaseUrl();
@@ -34,6 +32,8 @@ public abstract class BasePage extends LoadableComponent<BasePage> {
     public BasePage(WebDriver driver) {
         this(driver, "");
     }
+
+    public abstract boolean isInitialized();
 
     @Override
     public BasePage get() {
@@ -65,9 +65,5 @@ public abstract class BasePage extends LoadableComponent<BasePage> {
         }
 
         return relativeUrl;
-    }
-
-    public HeaderSection getHeaderSection() {
-        return (headerSection == null) ? headerSection = new HeaderSection(driver) : headerSection;
     }
 }
