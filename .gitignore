@@ -22,7 +22,3 @@ target/
 *.zip
 *.tar.gz
 *.rar
-
-
-# Confidential
-initConfig.properties
