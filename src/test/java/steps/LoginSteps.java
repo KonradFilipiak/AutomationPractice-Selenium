@@ -8,36 +8,18 @@ import org.openqa.selenium.NoSuchElementException;
 
 public class LoginSteps extends BaseTest {
 
-    @When("^User logs? in with (valid credentials|wrong password|empty password|empty email|invalid email|wrong email|empty credentials)$")
-    public void userLogsInWith(String condition) {
-        String email = "";
-        String password = "";
+    @When("^User logs? in with valid credentials$")
+    public void userLogsInWith() {
+        String email = propertiesLoader.getUserEmail();
+        String password = propertiesLoader.getUserPassword();
 
-        switch (condition) {
-            case "valid credentials":
-                email = propertiesLoader.getUserEmail();
-                password = propertiesLoader.getUserPassword();
-                break;
-            case "wrong password":
-                email = propertiesLoader.getUserEmail();
-                password = "WrongPassword1!";
-                break;
-            case "empty password":
-                email = propertiesLoader.getUserEmail();
-                break;
-            case "empty email":
-                password = propertiesLoader.getUserPassword();
-                break;
-            case "invalid email":
-                email = "invalid-email";
-                password = propertiesLoader.getUserPassword();
-                break;
-            case "wrong email":
-                email = "example-of-wrong-email@konradfilipiak.com";
-                password = propertiesLoader.getUserPassword();
-                break;
-            case "empty credentials":
-                break;
+        pages.getSignInPage().logIn(email, password);
+    }
+
+    @When("^User logs? in with \"([^\"]*)\" and \"([^\"]*)\"$")
+    public void userLogsInWith(String email, String password) {
+        if (email.equals("correct-email")) {
+            email = propertiesLoader.getUserEmail();
         }
 
         pages.getSignInPage().logIn(email, password);
